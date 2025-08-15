@@ -1,7 +1,7 @@
 # Bangla-History-Chatbot
 
 <p align="center">
-  <img src="sample_output.png" alt="Sample Output" width="600">
+  <img src="data/sample_output.png" alt="Sample Output" width="600">
 </p>
 
 
