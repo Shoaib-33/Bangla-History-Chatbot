@@ -15,14 +15,6 @@ def normalize_bangla_text(text: str) -> str:
     text = re.sub(r"([।,.!?])\s+", r"\1 ", text)
     return text.replace("আইয়ূব", "আইয়ুব")
 
-import os
-from langchain.docstore.document import Document
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-# Constants
-CHUNK_SIZE = 1000
-CHUNK_OVERLAP = 200
-
 def load_document(pdf_path: str = None, txt_cache_path: str = None) -> str:
     """
     Load text from cache or process from PDF if cache is unavailable.
