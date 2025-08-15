@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>📚 বাংলাদেশ ইতিহাস বট</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap');
+
+        /* 🎨 Theme Colors (inspired by Bangladeshi flag + earthy heritage tones) */
+        :root {
+            --primary: #006a4e; /* Deep green */
+            --primary-dark: #004d39; /* Darker green */
+            --accent: #f4c430; /* Golden yellow */
+            --bg-overlay: rgba(0, 0, 0, 0.45);
+        }
+
+        body {
+            font-family: 'Noto Serif Bengali', serif;
+            background: 
+                linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+                url('static/bangla_image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            animation: fadeIn 1s ease;
+            backdrop-filter: blur(8px);
+            border-top: 5px solid var(--accent); /* Gold accent strip */
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--accent);
+            resize: none;
+            outline: none;
+            color: black;
+            background-color: rgba(255,255,255,0.95);
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        .answer {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            border: 1px solid var(--accent);
+            font-size: 1rem;
+            white-space: pre-wrap;
+            color: #37474f;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>📚 বাংলাদেশ ইতিহাস বট</h1>
+        <textarea id="question" placeholder="❓ আপনার প্রশ্ন লিখুন..."></textarea>
+        <button onclick="askQuestion()">প্রশ্ন করুন</button>
+        <div id="answer" class="answer" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function askQuestion() {
+            const question = document.getElementById("question").value.trim();
+            const answerDiv = document.getElementById("answer");
+
+            if (!question) {
+                answerDiv.style.display = "block";
+                answerDiv.innerHTML = "⚠️ অনুগ্রহ করে প্রশ্ন লিখুন।";
+                return;
+            }
+
+            answerDiv.style.display = "block";
+            answerDiv.innerHTML = "⏳ উত্তর খোঁজা হচ্ছে...";
+
+            try {
+                const response = await fetch("/ask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query: question })
+                });
+                const data = await response.json();
+                answerDiv.innerHTML = "✅ উত্তর: " + data.answer;
+            } catch (error) {
+                answerDiv.innerHTML = "❌ সার্ভারের সাথে সংযোগ ব্যর্থ হয়েছে।";
+            }
+        }
+    </script>
+
+</body>
+</html>
