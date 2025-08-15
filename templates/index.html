@@ -94,7 +94,7 @@
 
     <div class="card">
         <h1>📚 বাংলাদেশ ইতিহাস বট</h1>
-        <textarea id="question" placeholder="❓ আপনার প্রশ্ন লিখুন..."></textarea>
+        <textarea id="question" placeholder=" আপনার প্রশ্ন লিখুন..."></textarea>
         <button onclick="askQuestion()">প্রশ্ন করুন</button>
         <div id="answer" class="answer" style="display: none;"></div>
     </div>
@@ -106,12 +106,12 @@
 
             if (!question) {
                 answerDiv.style.display = "block";
-                answerDiv.innerHTML = "⚠️ অনুগ্রহ করে প্রশ্ন লিখুন।";
+                answerDiv.innerHTML = " অনুগ্রহ করে প্রশ্ন লিখুন।";
                 return;
             }
 
             answerDiv.style.display = "block";
-            answerDiv.innerHTML = "⏳ উত্তর খোঁজা হচ্ছে...";
+            answerDiv.innerHTML = " উত্তর খোঁজা হচ্ছে...";
 
             try {
                 const response = await fetch("/ask", {
@@ -120,9 +120,9 @@
                     body: JSON.stringify({ query: question })
                 });
                 const data = await response.json();
-                answerDiv.innerHTML = "✅ উত্তর: " + data.answer;
+                answerDiv.innerHTML = " উত্তর: " + data.answer;
             } catch (error) {
-                answerDiv.innerHTML = "❌ সার্ভারের সাথে সংযোগ ব্যর্থ হয়েছে।";
+                answerDiv.innerHTML = " সার্ভারের সাথে সংযোগ ব্যর্থ হয়েছে।";
             }
         }
     </script>
