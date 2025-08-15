@@ -22,3 +22,11 @@ To create a **reliable digital archive of Bangla history** and make it searchabl
 - **Vector Store:** ChromaDB  
 - **LLM:** Groq / Gemini / OpenAI via LangChain  
 - **Text Processing:** Unicode normalization & Bangla-specific cleanup
+
+# Motivation
+This project was inspired by an open-source initiative called "Real History of Bangladesh", which aims to preserve and present the authentic history of Bangladesh without distortion.
+Building on that vision, I developed the entire AI-powered pipeline — from document processing, OCR, and text normalization to semantic search and context-aware question answering.
+
+The goal is to make historical knowledge easily searchable in Bangla, ensuring both the questions and answers are in the native language, and that the answers are drawn only from verified historical documents.
+
+This is an open-source effort and is completely free for improvement. Anyone interested in enhancing the dataset, improving accuracy, adding more models, or expanding features is welcome to contribute. Together, we can build a reliable, accessible, and truthful digital archive of Bangladesh’s history for future generations.
